@@ -3,26 +3,20 @@ import React, { useState, useEffect } from 'react';
 import BookmarkSection from './components/BookmarkSection';
 import TodoSection from './components/TodoSection';
 import CalendarSection from './components/CalendarSection';
+import AiAssistant from './components/AiAssistant';
 import { Bookmark, Todo, CalendarEvent } from './types';
 
 const App: React.FC = () => {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>(() => {
     const saved = localStorage.getItem('hub_bookmarks');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      return parsed.map((b: any) => ({
-        ...b,
-        category: b.category || 'www',
-        clickCount: b.clickCount || 0
-      }));
-    }
+    if (saved) return JSON.parse(saved);
     return [
       { id: '1', title: 'Google', url: 'https://google.com', category: 'www', clickCount: 0 },
       { id: '2', title: 'YouTube', url: 'https://youtube.com', category: 'Video', clickCount: 0 },
       { id: '3', title: 'GitHub', url: 'https://github.com', category: 'Edukacja AI', clickCount: 0 },
-      { id: '4', title: 'Unsplash', url: 'https://unsplash.com', category: 'Foto', clickCount: 0 },
-      { id: '5', title: 'Kindle', url: 'https://read.amazon.com', category: 'e-book', clickCount: 0 },
-      { id: '6', title: 'Medonet', url: 'https://medonet.pl', category: 'Zdrowie', clickCount: 0 }
+      { id: '4', title: 'ChatGPT', url: 'https://chat.openai.com', category: 'Edukacja AI', clickCount: 0 },
+      { id: '5', title: 'Canva', url: 'https://canva.com', category: 'Foto', clickCount: 0 },
+      { id: '6', title: 'Facebook', url: 'https://facebook.com', category: 'www', clickCount: 0 }
     ];
   });
 
@@ -49,48 +43,38 @@ const App: React.FC = () => {
   }, [events]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-8">
-      <header className="max-w-7xl mx-auto mb-8 flex items-baseline justify-between border-b border-slate-200 pb-4">
+    <div className="min-h-screen bg-[#fafafa] p-4 md:p-10 transition-colors duration-500">
+      <header className="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row md:items-end justify-between border-b border-slate-100 pb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tighter">My Hub</h1>
-          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Personal Productivity Dashboard</p>
+          <h1 className="text-5xl font-black text-slate-900 tracking-tighter">Monia Hub</h1>
+          <p className="text-xs text-indigo-500 font-bold uppercase tracking-[0.4em] mt-2">Personal Management Center</p>
         </div>
-        <div className="text-right">
-          <div className="text-sm text-slate-800 font-bold">
-            {new Date().toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })}
+        <div className="flex flex-col md:items-end bg-white px-6 py-3 rounded-3xl shadow-sm border border-slate-50">
+          <div className="text-lg text-slate-800 font-extrabold">
+            {new Date().toLocaleDateString('pl-PL', { day: 'numeric', month: 'long' })}
           </div>
-          <div className="text-[10px] text-slate-400 font-bold uppercase">
+          <div className="text-[10px] text-slate-400 font-black uppercase tracking-widest">
             {new Date().toLocaleDateString('pl-PL', { weekday: 'long' })}
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto flex flex-col gap-8">
-        {/* Row 1: Bookmarks Horizontal - Full Width */}
-        <section className="w-full">
-          <BookmarkSection 
-            bookmarks={bookmarks} 
-            setBookmarks={setBookmarks} 
-          />
+      <main className="max-w-7xl mx-auto flex flex-col gap-10">
+        <section className="animate-in fade-in slide-in-from-top-4 duration-700">
+          <BookmarkSection bookmarks={bookmarks} setBookmarks={setBookmarks} />
         </section>
 
-        {/* Row 2: Todo and Calendar - Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <section>
-            <TodoSection 
-              todos={todos} 
-              setTodos={setTodos} 
-            />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <section className="animate-in fade-in slide-in-from-left-4 duration-700 delay-100">
+            <TodoSection todos={todos} setTodos={setTodos} />
           </section>
-
-          <section>
-            <CalendarSection 
-              events={events} 
-              setEvents={setEvents} 
-            />
+          <section className="animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
+            <CalendarSection events={events} setEvents={setEvents} />
           </section>
         </div>
       </main>
+
+      <AiAssistant />
     </div>
   );
 };
