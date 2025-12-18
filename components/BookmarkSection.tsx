@@ -65,25 +65,26 @@ const BookmarkSection: React.FC<Props> = ({ bookmarks, setBookmarks }) => {
         </button>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-6">
+      {/* Siatka z mniejszymi ikonami (w-10 h-10 zamiast w-14 h-14) */}
+      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-5">
         {filteredBookmarks.map(bookmark => (
           <div key={bookmark.id} className="group relative flex flex-col items-center">
             <a 
               href={bookmark.url.startsWith('http') ? bookmark.url : `https://${bookmark.url}`}
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-14 h-14 bg-white border border-slate-100 rounded-2xl flex items-center justify-center p-3 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              className="w-11 h-11 bg-white border border-slate-100 rounded-xl flex items-center justify-center p-2.5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
             >
               <img src={getFavicon(bookmark.url)} alt="" className="w-full h-full object-contain" />
             </a>
-            <span className="mt-2 text-[10px] font-bold text-slate-500 uppercase tracking-tight text-center truncate w-full px-1">
+            <span className="mt-2 text-[9px] font-extrabold text-slate-400 uppercase tracking-tighter text-center truncate w-full px-1">
               {bookmark.title}
             </span>
             <button 
               onClick={() => removeBookmark(bookmark.id)}
-              className="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 bg-red-50 text-red-400 p-1 rounded-lg hover:bg-red-100 transition-all"
+              className="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 bg-red-50 text-red-400 p-1 rounded-lg hover:bg-red-100 transition-all shadow-sm z-10"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
+              <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
         ))}
