@@ -1,5 +1,5 @@
 
-export type BookmarkCategory = 'e-book' | 'Video' | 'Foto' | 'www' | 'Zdrowie' | 'Edukacja AI';
+export type BookmarkCategory = 'psychologia' | 'Video' | 'Foto' | 'www' | 'Zdrowie' | 'Hipnoza';
 
 export interface Bookmark {
   id: string;
@@ -38,5 +38,5 @@ export interface CalendarEvent {
   remindMe?: boolean;
   reminderMinutes?: number;
   soundUrl?: string;
-  isExternal?: boolean; // Flaga dla zsynchronizowanych wydarzeń
+  isExternal?: boolean;
 }

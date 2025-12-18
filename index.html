@@ -6,17 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monia Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #fafafa;
-            color: #1e293b;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        #root {
-            min-height: 100vh;
         }
     </style>
     <script type="importmap">
@@ -25,7 +19,6 @@
     "react": "https://esm.sh/react@19.0.0",
     "react-dom": "https://esm.sh/react-dom@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "@google/genai": "https://esm.sh/@google/genai@0.21.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
@@ -35,11 +28,5 @@
 <body>
     <div id="root"></div>
     <script type="module" src="./index.tsx"></script>
-    <script>
-      // Prosty debug, aby sprawdzić czy strona w ogóle żyje
-      window.onerror = function(msg, url, line) {
-        console.error("Critical Error: " + msg + " at " + url + ":" + line);
-      };
-    </script>
 </body>
 </html>
